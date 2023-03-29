@@ -7,7 +7,7 @@
     }
     y(function() {
         "use strict";
-        var c = '<div class="item"><div class="row"><div class="col-sm-2"><img src="{PRODUCT_IMAGE}" alt="" class="pull-left" /></div><div class="col-sm-7"><p>{VARIANT_NAME}</p></div><div class="col-sm-3 col-price"><span>{VARIANT_PRICE}<br/>{VARIANT_QUANTITY_PRESENTATION}</span></div></div></div>'
+        var c = '<div class="item"><div class="row"><div class="col-sm-2"><img src="{PRODUCT_IMAGE}" alt="{VARIANT_NAME}" class="pull-left" /></div><div class="col-sm-7"><p>{VARIANT_NAME}</p></div><div class="col-sm-3 col-price"><span>{VARIANT_PRICE}<br/>{VARIANT_QUANTITY_PRESENTATION}</span></div></div></div>'
           , d = '<div class="row"><div class="col-md-12 text-right"><span class="cart-sumary-total">Descontos: {CART_DISCOUNT_TOTAL}</span></div></div>'
           , m = '<div class="row"><div class="col-md-12 text-right">' + (SHOW_PRODUCT_PRICE ? '<span class="cart-sumary-total">Total: {CART_TOTAL}</span>' : "") + '</br></br><a href="/cart/" class=" pull-right btn-blue btn-cart-sumary"><i class="fa fa-shopping-cart"></i> &nbsp;&nbsp;Ir para o carrinho</a></div></div>'
           , u = "<h4>Nenhum produto em seu carrinho.</h4>";
@@ -20,7 +20,7 @@
             return t
         }
         async function t(e) {
-            y(".shopping-cart-content").empty().append('<img src="/bundles/flexyftwostore/img/loading.gif" alt="" class="center" />'),
+            y(".shopping-cart-content").empty().append('<img src="/bundles/flexyftwostore/img/loading.gif" alt="carregando" class="center" />'),
             await T(e);
             var t = SHOW_PRODUCT_PRICE ? y.number(e.totalWithDiscount, 2, ",", ".") : ""
               , a = y(".shopping-cart-content").empty()
