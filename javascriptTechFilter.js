@@ -7,7 +7,7 @@
     }
     y(function() {
         "use strict";
-        var c = '<div class="item"><div class="row"><div class="col-sm-2"><img src="{PRODUCT_IMAGE}" alt="carregando" class="pull-left" /></div><div class="col-sm-7"><p>{VARIANT_NAME}</p></div><div class="col-sm-3 col-price"><span>{VARIANT_PRICE}<br/>{VARIANT_QUANTITY_PRESENTATION}</span></div></div></div>'
+        var c = '<div class="item"><div class="row"><div class="col-sm-2"><img src="{PRODUCT_IMAGE}" alt="" class="pull-left" /></div><div class="col-sm-7"><p>{VARIANT_NAME}</p></div><div class="col-sm-3 col-price"><span>{VARIANT_PRICE}<br/>{VARIANT_QUANTITY_PRESENTATION}</span></div></div></div>'
           , d = '<div class="row"><div class="col-md-12 text-right"><span class="cart-sumary-total">Descontos: {CART_DISCOUNT_TOTAL}</span></div></div>'
           , m = '<div class="row"><div class="col-md-12 text-right">' + (SHOW_PRODUCT_PRICE ? '<span class="cart-sumary-total">Total: {CART_TOTAL}</span>' : "") + '</br></br><a href="/cart/" class=" pull-right btn-blue btn-cart-sumary"><i class="fa fa-shopping-cart"></i> &nbsp;&nbsp;Ir para o carrinho</a></div></div>'
           , u = "<h4>Nenhum produto em seu carrinho.</h4>";
@@ -25,6 +25,7 @@
             var t = SHOW_PRODUCT_PRICE ? y.number(e.totalWithDiscount, 2, ",", ".") : ""
               , a = y(".shopping-cart-content").empty()
               , o = p(e);
+            a.append('<div class="cart-container-items">');
             if (e && 0 != o.length) {
                 for (var i = 0, n = 0; n < o.length; n++) {
                     var s = o[n]
@@ -34,8 +35,9 @@
                     a.append(c.replace("{PRODUCT_IMAGE}", s.image || "/bundles/flexyftwostore/img/product-placeholder.gif").replace("{VARIANT_NAME}", s.name).replace("{VARIANT_PRICE}", r).replace("{VARIANT_QUANTITY_PRESENTATION}", "Qtd: " + w(s.quantity))),
                     i += l
                 }
+                a.append('</div>');
                 0 < e.salePromotionDiscountTotal && SHOW_PRODUCT_PRICE && a.append(d.replace("{CART_DISCOUNT_TOTAL}", "R$ " + y.number(e.salePromotionDiscountTotal, 2, ",", "."))),
-                window.innerWidth < 991 || screen.width < 991 ? y(".cart-items-count").html('<span class="badge badge-danger">' + Number(i) + "</span>") : y(".cart-items-count").html(Number(i) + " " + (1 < Number(i) ? "itens" : "item")),
+                window.innerWidth < 991 || screen.width < 991 ? y(".cart-items-count").html('<span class="badge badge-danger">' + Number(i) + "</span>") : y(".cart-items-count").html(Number(i)),
                 a.append(m.replace("{CART_TOTAL}", "R$ " + t))
             } else
                 a.html(u)
@@ -46,7 +48,7 @@
                   , n = i.quantity;
                 a += n = i.variant.isFractionalStock ? 1 : n
             }
-            window.innerWidth < 991 || screen.width < 991 ? y(".cart-items-count").html('<span class="badge badge-danger">' + Number(a) + "</span>") : y(".cart-items-count").html(Number(a) + " " + (1 < Number(a) ? "itens" : "item"))
+            window.innerWidth < 991 || screen.width < 991 ? y(".cart-items-count").html('<span class="badge badge-danger">' + Number(a) + "</span>") : y(".cart-items-count").html(Number(a))
         }
         function i(e, t) {
             if (!(t && t < e))
