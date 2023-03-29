@@ -25,8 +25,8 @@
             var t = SHOW_PRODUCT_PRICE ? y.number(e.totalWithDiscount, 2, ",", ".") : ""
               , a = y(".shopping-cart-content").empty()
               , o = p(e);
-            a.append('<div class="cart-container-items">');
             if (e && 0 != o.length) {
+                a.append('<div class="cart-container-items">');
                 for (var i = 0, n = 0; n < o.length; n++) {
                     var s = o[n]
                       , r = SHOW_PRODUCT_PRICE ? "R$ " + y.number(s.totalPriceWithDiscount, 2, ",", ".") : ""
